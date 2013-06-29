@@ -59,4 +59,4 @@ permalink: Setup
 
 進入[生成簡單專案(create a simple project)][1001]階段。
 
-[1001]: 2013-06-29-Welcome.markdown "Create a simple project"
+[1001]: ../Welcome "Create a simple project"
