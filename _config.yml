@@ -1,0 +1,5 @@
+safe: true
+markdown: rdiscount
+pygments: true
+permalink: pretty
+exclude: [sbt-doc-ch.sublime-project, sbt-doc-ch.sublime-workspace, README.md]

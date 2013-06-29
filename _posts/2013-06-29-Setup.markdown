@@ -1,0 +1,62 @@
+---
+layout: default
+title: 設定Sbt!
+permalink: Setup
+---
+
+# 大綱 #
+
+要產生一個sbt專案，你需要完成下述的步驟:
+
+* 安裝sbt接著產生一份腳本去執行它
+* 設定一個簡單的hello world專案
+    + 產生專案目錄並放入原碼
+    + 產生建置所需定義
+* 進入執行(running)步驟學習如何執行sbt
+* 接著進入.sbt建置定義(.sbt build definition)步驟學習更多有關於建置定義的部份
+
+# 安裝sbt #
+
+最新的開發版本是0.13.0版，可於Typesafe快照區(Typesafe Snapshots)裡取得每夜最新版本
+
+
+使用每夜最新版本的方式大至上和自行安裝是一樣的，除了下述的幾個步驟要調整：
+
+1. 從連結()裡所含的數個子目錄中任一子目錄裡下載啓動jar檔，這些子目錄是依據時間的進程所排，所以最新的一份會在最後面。
+2. 子目錄的命名是依照版本所以命名呈現上看起來會像是 0.13.x-yyyyMMdd-HHmmss(年月日-時分秒)，在build.properties裡使用這個資訊(稍後會概略提及)。
+3. 在腳本檔案的命名上請用sbt-nightly，這樣不會和穏定版本的啓動檔混淆。但之後的文件中內有提到此腳本檔案，仍是使用sbt(不再額外區分是開發版本或是穏定版本的啓動腳本)
+
+和第三點相關連的，在`<build-base>/project/build.properties`這份檔案裡的sbt.version，是決定要在專案中用哪個sbt版本的資訊。假如此資訊並未放於檔案中，則預設的版本會使用和啓動腳本相同版本。這也表示如果想要掌握某一特定的sbt版本，一定要在`<build-base>/project/build.properties`檔案中加入sbt.version=yyyyMMdd-HHmmss(年月日-時分秒)。若是想確認使用的sbt版本為何，則可以執行指令`sbtVersion`去查看。
+
+## 手動安裝 ##
+
+### Windows ###
+
+產生批次檔sbt.bat：
+
+    $ set SCRIPT_DIR=%~dp0
+    $ java -Xmx512M -jar "%SCRIPT_DIR%sbt-launch.jar" %*
+
+並將sbt-launcher.jar檔案放置於和批次檔同層的目錄。待sbt.bat的資訊放於環境變數路徑裡後，則可在命令提示(command prompt)中鍵入`sbt`執行。
+
+### Unix ###
+
+將sbt-launch.jar放置於~/bin裡。
+
+產生一腳本執行jar檔，放將此檔命名為sbt後放置於~/bin裡。
+
+    java -Xms512M -Xmx1536M -Xss1M -XX:+CMSClassUnloadingEnabled -XX:MaxPermSize=384M -jar `dirname $0`/sbt-launch.jar "$@"
+
+讓此腳本可被執行的:
+
+    $ chmod u+x ~/bin/sbt
+
+## 技巧和更多資訊 ##
+
+如果你在執行sbt時有遇到任何問題，可從Setup Notes裡參照Terminal編碼、HTTP代理、和JVM選項。
+
+## 進入下一階段 ##
+
+進入[生成簡單專案(create a simple project)][1001]階段。
+
+[1001]: 2013-06-29-Welcome.markdown "Create a simple project"
